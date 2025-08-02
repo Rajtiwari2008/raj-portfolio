@@ -1,169 +1,234 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+/* === Variables === */
 :root {
-    --primary: #4F46E5;
-    --secondary: #10B981;
-    --dark: #1F2937;
-    --light: #F9FAFB;
+  --color-primary: #4F46E5;
+  --color-secondary: #10B981;
+  --color-dark: #1F2937;
+  --color-light: #F9FAFB;
+  --color-bg-dark: #070511;
+  --border-radius: 12px;
+  --transition: 0.3s;
+  --font-base: 'Poppins', sans-serif;
+}
+
+/* === Base Styles === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #070511;
-    color: var(--dark);
-    overflow-x: hidden;
-    animation: bodyFadeSlide 2s ease-out forwards;
-    opacity: 0;
-    transform: translateY(20px);
+  font-family: var(--font-base);
+  background: var(--color-bg-dark);
+  color: var(--color-light);
+  margin: 0;
+  overflow-x: hidden;
+  animation: bodyFadeSlide 2s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 @keyframes bodyFadeSlide {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
+/* Gradient Text Utility */
 .gradient-text {
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-/* Responsive Typography */
+/* Typography */
 h1, h2, h3, h4, h5, h6 {
-    line-height: 1.2;
-    margin-bottom: 0.75rem;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--color-light);
 }
 h1 { font-size: 2.5rem; }
 h2 { font-size: 2rem; }
 h3 { font-size: 1.5rem; }
-p { font-size: 1rem; }
+p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-light);
+  margin-bottom: 1rem;
+}
 
+/* Container */
 .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
 }
 
-/* Navigation */
+/* Navbar */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background-color: var(--dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: var(--color-dark);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
+
+.nav-logo {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
 .nav-menu {
-    display: flex;
-    gap: 2rem;
+  display: flex;
+  gap: 2rem;
+  transition: transform var(--transition);
 }
+
 .nav-link {
-    color: var(--light);
-    font-weight: 500;
-    position: relative;
+  color: var(--color-light);
+  font-weight: 500;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color var(--transition);
 }
+
 .nav-link::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 2px;
-    background: var(--primary);
-    transition: width 0.3s;
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width var(--transition);
 }
-.nav-link:hover::after {
-    width: 100%;
+
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--color-primary);
 }
+.nav-link:hover::after,
+.nav-link:focus::after {
+  width: 100%;
+}
+
+/* Hamburger */
 .nav-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--light);
-    font-size: 1.5rem;
-    cursor: pointer;
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-light);
+  font-size: 1.8rem;
+  cursor: pointer;
 }
 
-/* Project Cards Grid */
+/* Project Grid */
 .project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-}
-.project-card {
-    background-color: #111;
-    border-radius: 12px;
-    padding: 1rem;
-    color: var(--light);
-    transition: all 0.3s ease;
-    transform: translateY(0);
-}
-.project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-top: 2rem;
 }
 
+.project-card {
+  background: #111;
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
+  color: var(--color-light);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  transition: transform var(--transition), box-shadow var(--transition);
+  cursor: pointer;
+}
+.project-card:hover,
+.project-card:focus-within {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+}
+
+/* Animation Utilities */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px);}
-    to { opacity: 1; transform: translateY(0);}
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
 }
 .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
 .delay-1 { animation-delay: 0.2s; }
 .delay-2 { animation-delay: 0.4s; }
 .delay-3 { animation-delay: 0.6s; }
 
-/* Skill Bar */
+/* Skill bar */
 .skill-bar {
-    width: 100%;
-    height: 10px;
-    background-color: #333;
-    border-radius: 6px;
-    overflow: hidden;
-    transition: width 1.5s ease-out;
+  background: #333;
+  border-radius: 6px;
+  height: 10px;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 1rem;
 }
 .skill-bar > div {
-    height: 100%;
-    background-color: var(--primary);
-    width: 0;
-    transition: width 1.5s ease-out;
+  height: 100%;
+  width: 0;
+  background: var(--color-primary);
+  transition: width 1.5s ease-out;
 }
 
-/* Grid Pattern Utility */
+/* Pattern background (optional utility) */
 .grid-pattern {
-    background-image:
-        linear-gradient(rgba(79, 70, 229, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(79, 70, 229, 0.03) 1px, transparent 1px);
-    background-size: 30px 30px;
+  background-image:
+    linear-gradient(rgba(79,70,229,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79,70,229,0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
 }
 
-/* Responsive Media Queries */
+/* === Responsive === */
 @media (max-width: 768px) {
-    body { font-size: 14px; }
-    h1 { font-size: 2rem; }
-    h2 { font-size: 1.5rem; }
-    .nav-menu {
-        display: none;
-        flex-direction: column;
-        background-color: var(--dark);
-        position: fixed;
-        top: 60px;
-        right: 0;
-        width: 70%;
-        height: 100vh;
-        padding: 2rem 1rem;
-        z-index: 1000;
-        overflow-y: auto;
-    }
-    .nav-menu.active { display: flex; }
-    .nav-toggle { display: block; }
-    .project-grid { grid-template-columns: 1fr; }
+  body { font-size: 14px; }
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+
+  .nav-menu {
+    display: none;
+    position: fixed;
+    top: 60px;
+    right: 0;
+    width: 75%;
+    height: 100vh;
+    background: var(--color-dark);
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    gap: 2rem;
+    z-index: 9999;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform var(--transition);
+  }
+  .nav-menu.active { display: flex; transform: translateX(0);}
+  .nav-toggle { display: block; }
+  .project-grid { grid-template-columns: 1fr;}
 }
 
 @media (min-width: 769px) {
-    body { font-size: 16px; }
-    .nav-menu { display: flex !important; flex-direction: row !important; }
-    .nav-toggle { display: none !important; }
-    .project-grid { grid-template-columns: repeat(3, 1fr);}
+  body { font-size: 16px; }
+  .nav-menu {
+    display: flex !important;
+    position: static;
+    transform: none !important;
+    flex-direction: row;
+    height: auto;
+    background: transparent;
+    padding: 0;
+    gap: 2rem;
+  }
+  .nav-toggle { display: none !important;}
+  .project-grid { grid-template-columns: repeat(3, 1fr);}
 }
