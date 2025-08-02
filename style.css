@@ -1,193 +1,107 @@
-/* Core Mobile-First Reset & Layout */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary: #4F46E5;
+    --secondary: #10B981;
+    --dark: #1F2937;
+    --light: #F9FAFB;
+}
+
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-  background: #1E1E2F;
-  color: #fafafa;
-  min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--light);
+    color: var(--dark);
+    overflow-x: hidden;
+    animation: bodyFadeSlide 2s ease-out forwards;
+    opacity: 0;
+    /* start invisible */
+    transform: translateY(20px);
+    /* start slightly below */
 }
 
-/* Responsive Container */
-.container, .main-content, .hero {
-  width: 100%;
-  max-width: 100vw;
-  padding: 0 4vw;
-  box-sizing: border-box;
+@keyframes bodyFadeSlide {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* Header and Navigation */
-header, .navbar {
-  background: linear-gradient(90deg, #171734 35%, #34247a 100%);
-  padding: 14px 4vw;
-  position: sticky;
-  top: 0;
-  width: 100vw;
-  z-index: 10;
-  box-shadow: 0 4px 20px #0002;
+
+.gradient-text {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.nav-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s;
 }
 
-.navbar .logo {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #f3f3f3;
-  letter-spacing: 1.5px;
+.nav-link:hover::after {
+    width: 100%;
 }
 
-.menu-toggle, .menu-close-btn {
-  display: block;
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 2rem;
+.project-card {
+    transition: all 0.3s ease;
+    transform: translateY(0);
 }
 
-/* Hide large nav menu by default on mobile */
-.nav-menu {
-  display: none;
-  flex-direction: column;
-  gap: 1.2rem;
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-.nav-menu.active {
-  display: flex;
-  position: fixed;
-  top: 56px;
-  right: 0;
-  background: #1E1E2F;
-  width: 70vw;
-  min-width: 170px;
-  max-width: 340px;
-  height: 100vh;
-  padding: 32px 20px;
-  box-shadow: -4px 0 16px #0006;
-  z-index: 99;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.nav-link {
-  color: #d6dbf4;
-  font-size: 1.07rem;
-  font-weight: 500;
-  letter-spacing: 0.7px;
-  text-decoration: none;
-  padding: 6px 0;
-  border-bottom: 2px solid transparent;
-}
-.nav-link:active, .nav-link.active, .nav-link:hover {
-  border-bottom: 2px solid #ff50a0;
-  color: #ff50a0;
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
 }
 
-/* Hero Section */
-.hero {
-  text-align: left;
-  padding: 44px 4vw 20px 4vw;
+.delay-1 {
+    animation-delay: 0.2s;
 }
 
-.hero h1 {
-  font-size: 2rem;
-  margin: 0 0 10px 0;
-  color: #fff;
-}
-.hero h1 > .gradient-text {
-  display: inline;
-  background: linear-gradient(90deg, #7657ff, #10B981 62%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-.hero-description {
-  font-size: 1.02rem;
-  margin-bottom: 24px;
-  color: #c7d1ea;
+.delay-2 {
+    animation-delay: 0.4s;
 }
 
-/* Buttons Layout */
-.hero .buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  width: 100%;
-  max-width: 360px;
-  margin-top: 18px;
-}
-.hero .btn {
-  padding: 12px 0;
-  font-size: 1.02rem;
-  font-weight: 500;
-  border-radius: 8px;
-  border: none;
-  background: linear-gradient(90deg, #ff3698 10%, #6a8efd 90%);
-  color: #fff;
-  cursor: pointer;
-  transition: background 0.22s;
-  box-shadow: 0 3px 12px #0002;
-}
-.hero .btn-secondary {
-  background: transparent;
-  color: #6a8efd;
-  border: 2px solid #6a8efd;
+.delay-3 {
+    animation-delay: 0.6s;
 }
 
-/* Profile Image - Fully Responsive & Centered */
-.profile-image-box {
-  width: 140px;
-  height: 140px;
-  margin: 28px auto 0 auto;
-  border-radius: 50%;
-  overflow: hidden;
-  background: #291959;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 18px #31235855;
-}
-.profile-image-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.skill-bar {
+    transition: width 1.5s ease-out;
 }
 
-/* General Responsive Utilities */
-@media (max-width: 600px) {
-  h1, .hero h1 { font-size: 1.45rem; }
-  .hero-description   { font-size: 0.99rem; }
-  .container, .main-content, .hero { padding: 0 2vw;}
-  .navbar { padding: 12px 2vw; }
-  .profile-image-box { width: 108px; height: 108px;}
-  .hero .btn, .hero .btn-secondary { font-size: 0.98rem; padding: 10px 0;}
+.grid-pattern {
+    background-image:
+        linear-gradient(rgba(79, 70, 229, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79, 70, 229, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
 }
 
-/* Larger screens adjust for desktop */
-@media (min-width: 786px) {
-  .navbar, header, .main-content, .container { max-width: 535px; margin: 0 auto;}
-  .navbar { padding: 18px 0; }
-  .nav-menu {
-    display: flex !important;
-    flex-direction: row;
-    position: static;
-    height: auto;
-    width: auto;
-    min-width: 0;
-    background: none;
-    padding: 0;
-    gap: 2rem;
-    box-shadow: none;
-  }
-  .menu-toggle, .menu-close-btn { display: none !important; }
-  .hero { padding: 70px 0 36px 0;}
-  .profile-image-box { width: 168px; height: 168px;}
-  .hero .buttons { flex-direction: row; gap: 18px;}
-  .hero .btn, .hero .btn-secondary { width: 160px;}
+.gradient-text {
+    background: linear-gradient(90deg, #293B5F 0%, #E94560 100%);
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
-/* Utility: Remove tap highlight */
-* {
-  -webkit-tap-highlight-color: transparent;
+body {
+    background-color: #070511;
 }
