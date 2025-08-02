@@ -72,5 +72,25 @@
     toggleBtn.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
     });
+  const menuBtn = document.getElementById('menu-btn');
+  const navMenu = document.getElementById('nav-menu');
+
+  menuBtn.addEventListener('click', () => {
+    const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+    menuBtn.setAttribute('aria-expanded', !expanded);
+    navMenu.classList.toggle('opacity-0');
+    navMenu.classList.toggle('pointer-events-none');
+  });
+
+  // Optional: close menu when a nav link is clicked (mobile)
+  navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(window.innerWidth < 768){
+        menuBtn.setAttribute('aria-expanded', false);
+        navMenu.classList.add('opacity-0', 'pointer-events-none');
+      }
+    });
+  });
+
 
 
