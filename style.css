@@ -28,6 +28,7 @@ body {
   transform: translateY(20px);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
 }
 
 /* Fade and slide-in animation on body load */
@@ -287,3 +288,4 @@ nav {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
