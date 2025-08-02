@@ -1,23 +1,36 @@
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+/*
+ * =============================================================
+ * CSS for a Modern, Responsive Portfolio Website
+ * =============================================================
+ *
+ * This stylesheet is designed to be mobile-first, ensuring a great experience on all devices.
+ * It features a dark theme, subtle animations, and a responsive navigation menu.
+ *
+ * Font: Poppins from Google Fonts.
+ *
+ */
 
-/* === CSS Variables === */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* === 1. CSS Variables for easy theming and consistency === */
 :root {
-  --color-primary: #4F46E5;
-  --color-dark: #1F2937;
-  --color-light: #F9FAFB;
-  --color-bg-dark: #070511;
-  --nav-height: 56px;
+  --color-primary: #4F46E5;     /* Indigo */
+  --color-secondary: #10B981;   /* Emerald */
+  --color-dark: #1F2937;        /* Dark navy/gray for components */
+  --color-light: #F9FAFB;       /* Light text color */
+  --color-bg-dark: #070511;     /* Dark body background */
   --border-radius: 12px;
   --transition: 0.3s ease;
   --font-base: 'Poppins', sans-serif;
 }
 
-/* === Base styles === */
-*,
-*::before,
-*::after {
+/* === 2. Global Reset & Base Styles === */
+*, *::before, *::after {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -25,69 +38,128 @@ body {
   background-color: var(--color-bg-dark);
   color: var(--color-light);
   margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  width: 100vw;
   overflow-x: hidden;
-  /* Add padding top to prevent content hiding behind fixed nav */
-  padding-top: var(--nav-height);
-}
-
-/* === Navigation Bar === */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: var(--nav-height);
-  width: 100vw;
-  background-color: var(--color-dark);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  user-select: none;
-}
-
-.nav-inner {
-  max-width: 1100px;
+  animation: bodyFadeSlide 1s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   width: 100%;
+}
+
+/* Body fade and slide-in animation on load */
+@keyframes bodyFadeSlide {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === 3. Utility Classes === */
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+
+/* Fade-in animation for various elements */
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+
+/* Grid background pattern */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(79, 70, 229, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 70, 229, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* === 4. Typography === */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 0.75rem 0;
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--color-light);
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-light);
+  margin-bottom: 1rem;
+}
+
+/* === 5. Layout Container === */
+.container {
+  width: 90%;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 1.5rem 1rem; /* Slightly more vertical padding */
+}
+
+/* === 6. Navigation Styles === */
+nav {
+  background-color: var(--color-dark);
+  padding: 1rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1.2rem;
-  height: 100%;
+  user-select: none;
+  width: 100%;
 }
 
-/* Logo */
 .nav-logo {
+  font-family: var(--font-base);
   font-weight: 700;
-  font-size: 1.35rem;
+  font-size: 1.75rem;
   color: var(--color-primary);
-  letter-spacing: 0.05em;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
   text-decoration: none;
-  white-space: nowrap;
 }
 
-/* Navigation Menu */
 .nav-menu {
-  list-style: none;
   display: flex;
-  gap: 1.7rem;
+  gap: 2rem;
+  list-style: none;
   margin: 0;
   padding: 0;
+  transition: transform var(--transition);
 }
 
 .nav-link {
   color: var(--color-light);
-  text-decoration: none;
   font-weight: 500;
+  text-decoration: none;
   position: relative;
-  padding: 6px 0;
+  padding-bottom: 4px;
   transition: color var(--transition);
-  cursor: pointer;
 }
 
 .nav-link::after {
@@ -95,7 +167,7 @@ nav {
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 0;
+  width: 0%;
   height: 2px;
   background: var(--color-primary);
   transition: width var(--transition);
@@ -112,50 +184,30 @@ nav {
   width: 100%;
 }
 
-/* === Mobile Responsive Styles === */
-@media (max-width: 768px) {
-  /* Stack the nav menu vertically */
-  .nav-menu {
-    flex-direction: column;
-    position: fixed;
-    top: var(--nav-height);
-    left: 0;
-    width: 100vw;
-    height: calc(100vh - var(--nav-height));
-    background-color: var(--color-dark);
-    padding: 2rem 1.5rem;
-    gap: 1.2rem;
-    overflow-y: auto;
-    /* Show the menu by default since no JS */
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
-    z-index: 900;
-  }
-
-  /* If you want it hidden, you could add a class with transform: translateY(-100vh) */
-
-  /* Make navigation links bigger and easier for touch */
-  .nav-link {
-    font-size: 1.2rem;
-    padding: 12px 0;
-  }
+/* Hamburger toggle button - hidden on desktop */
+.nav-toggle {
+  display: none; /* Initially hidden on desktop */
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--color-primary);
+  cursor: pointer;
 }
 
-/* === Project Grid Example Styling (Optional) === */
+/* === 7. Project Cards Grid === */
 .project-grid {
   display: grid;
   gap: 1.5rem;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  margin: 2rem 1.2rem;
+  margin-top: 2rem;
 }
 
 .project-card {
-  background-color: #111;
+  background: #111;
   border-radius: var(--border-radius);
   padding: 1.25rem;
   color: var(--color-light);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
   transition: transform var(--transition), box-shadow var(--transition);
   cursor: pointer;
 }
@@ -163,13 +215,102 @@ nav {
 .project-card:hover,
 .project-card:focus-within {
   transform: translateY(-10px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 20px 25px -5px rgba(0,0,0,0.1),
+    0 10px 10px -5px rgba(0,0,0,0.04);
 }
 
-/* Responsive for project-grid on small screens */
-@media (max-width: 480px) {
+/* === 8. Skill Bar Styling === */
+.skill-bar {
+  background: #333;
+  border-radius: 6px;
+  height: 10px;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.skill-bar > div {
+  height: 100%;
+  width: 0;
+  background: var(--color-primary);
+  transition: width 1.5s ease-out;
+}
+
+/* === 9. Responsive Styles (Media Queries) === */
+
+/* Mobile devices and small screens */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+
+  .container {
+    padding: 1rem 0.5rem; /* Less padding on small screens */
+  }
+
+  /* Navigation styles for mobile */
+  .nav-menu {
+    position: fixed;
+    top: 60px;  /* height of nav */
+    right: 0;
+    background-color: var(--color-dark);
+    flex-direction: column;
+    width: 75vw;
+    max-width: 320px;
+    height: 100vh;
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
+    box-shadow: -2px 0 12px rgba(79,70,229,0.3);
+    transform: translateX(100%);
+    transition: transform var(--transition);
+    z-index: 1500;
+  }
+
+  /* Show menu when toggled active */
+  .nav-menu.active {
+    transform: translateX(0);
+  }
+
+  /* Show hamburger toggle */
+  .nav-toggle {
+    display: block;
+  }
+
+  /* Project grid single column on mobile */
   .project-grid {
     grid-template-columns: 1fr;
-    margin: 2rem 1rem;
+  }
+}
+
+/* Desktop and larger screens */
+@media (min-width: 769px) {
+  body {
+    font-size: 16px;
+  }
+
+  /* Ensure desktop nav is always visible and in a row */
+  .nav-menu {
+    display: flex !important;
+    position: static;
+    transform: none !important;
+    flex-direction: row;
+    height: auto;
+    background: transparent;
+    padding: 0;
+    gap: 2rem;
+    box-shadow: none;
+  }
+
+  /* Hide hamburger toggle on desktop */
+  .nav-toggle {
+    display: none !important;
+  }
+
+  /* Desktop project grid */
+  .project-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
