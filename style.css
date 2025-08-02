@@ -1,20 +1,36 @@
+/*
+ * =============================================================
+ * CSS for a Modern, Responsive Portfolio Website
+ * =============================================================
+ *
+ * This stylesheet is designed to be mobile-first, ensuring a great experience on all devices.
+ * It features a dark theme, subtle animations, and a responsive navigation menu.
+ *
+ * Font: Poppins from Google Fonts.
+ *
+ */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* === CSS Variables for easy theming and consistency === */
+/* === 1. CSS Variables for easy theming and consistency === */
 :root {
-  --color-primary: #4F46E5;    /* Indigo */
-  --color-secondary: #10B981;  /* Emerald */
-  --color-dark: #1F2937;       /* Dark navy/gray */
-  --color-light: #F9FAFB;      /* Light background */
-  --color-bg-dark: #070511;    /* Dark body background */
+  --color-primary: #4F46E5;     /* Indigo */
+  --color-secondary: #10B981;   /* Emerald */
+  --color-dark: #1F2937;        /* Dark navy/gray for components */
+  --color-light: #F9FAFB;       /* Light text color */
+  --color-bg-dark: #070511;     /* Dark body background */
   --border-radius: 12px;
   --transition: 0.3s ease;
   --font-base: 'Poppins', sans-serif;
 }
 
-/* === Global Reset & Base Styles === */
+/* === 2. Global Reset & Base Styles === */
 *, *::before, *::after {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -23,7 +39,7 @@ body {
   color: var(--color-light);
   margin: 0;
   overflow-x: hidden;
-  animation: bodyFadeSlide 2s ease-out forwards;
+  animation: bodyFadeSlide 1s ease-out forwards;
   opacity: 0;
   transform: translateY(20px);
   -webkit-font-smoothing: antialiased;
@@ -31,7 +47,7 @@ body {
   width: 100%;
 }
 
-/* Fade and slide-in animation on body load */
+/* Body fade and slide-in animation on load */
 @keyframes bodyFadeSlide {
   to {
     opacity: 1;
@@ -39,15 +55,44 @@ body {
   }
 }
 
+/* === 3. Utility Classes === */
+
 /* Gradient text utility */
 .gradient-text {
   background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  font-weight: 700;
 }
 
-/* === Typography === */
+/* Fade-in animation for various elements */
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+
+/* Grid background pattern */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(79, 70, 229, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 70, 229, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* === 4. Typography === */
 h1, h2, h3, h4, h5, h6 {
   margin: 0 0 0.75rem 0;
   line-height: 1.2;
@@ -66,15 +111,15 @@ p {
   margin-bottom: 1rem;
 }
 
-/* === Layout Container === */
+/* === 5. Layout Container === */
 .container {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 1.5rem 1rem; /* Slightly more vertical padding */
 }
 
-/* === Navigation Styles === */
+/* === 6. Navigation Styles === */
 nav {
   background-color: var(--color-dark);
   padding: 1rem 1.5rem;
@@ -96,6 +141,7 @@ nav {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .nav-menu {
@@ -140,7 +186,7 @@ nav {
 
 /* Hamburger toggle button - hidden on desktop */
 .nav-toggle {
-  display: none;
+  display: none; /* Initially hidden on desktop */
   background: none;
   border: none;
   font-size: 1.8rem;
@@ -148,7 +194,7 @@ nav {
   cursor: pointer;
 }
 
-/* === Project Cards Grid === */
+/* === 7. Project Cards Grid === */
 .project-grid {
   display: grid;
   gap: 1.5rem;
@@ -174,27 +220,7 @@ nav {
     0 10px 10px -5px rgba(0,0,0,0.04);
 }
 
-/* === Animation for elements fade-in === */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
-}
-
-.delay-1 { animation-delay: 0.2s; }
-.delay-2 { animation-delay: 0.4s; }
-.delay-3 { animation-delay: 0.6s; }
-
-/* === Skill Bar Styling === */
+/* === 8. Skill Bar Styling === */
 .skill-bar {
   background: #333;
   border-radius: 6px;
@@ -211,15 +237,7 @@ nav {
   transition: width 1.5s ease-out;
 }
 
-/* === Background Grid Pattern Utility (Optional) === */
-.grid-pattern {
-  background-image:
-    linear-gradient(rgba(79, 70, 229, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(79, 70, 229, 0.03) 1px, transparent 1px);
-  background-size: 30px 30px;
-}
-
-/* === Responsive Styles === */
+/* === 9. Responsive Styles (Media Queries) === */
 
 /* Mobile devices and small screens */
 @media (max-width: 768px) {
@@ -228,6 +246,10 @@ nav {
   }
   h1 { font-size: 2rem; }
   h2 { font-size: 1.5rem; }
+
+  .container {
+    padding: 1rem 0.5rem; /* Less padding on small screens */
+  }
 
   /* Navigation styles for mobile */
   .nav-menu {
@@ -269,6 +291,7 @@ nav {
     font-size: 16px;
   }
 
+  /* Ensure desktop nav is always visible and in a row */
   .nav-menu {
     display: flex !important;
     position: static;
@@ -281,13 +304,13 @@ nav {
     box-shadow: none;
   }
 
+  /* Hide hamburger toggle on desktop */
   .nav-toggle {
     display: none !important;
   }
 
+  /* Desktop project grid */
   .project-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-
-
