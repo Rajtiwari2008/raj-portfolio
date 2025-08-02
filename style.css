@@ -314,3 +314,10 @@ nav {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* Additional styles for larger screens */
+@media (min-width: 1200px) {
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.5rem; }
+  h3 { font-size: 2rem; }
+}
