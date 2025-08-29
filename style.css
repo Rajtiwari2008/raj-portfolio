@@ -8,7 +8,6 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   width: 100vw;
   min-height: 100vh;
@@ -163,8 +162,7 @@ nav {
     font-size: 1.1rem;
     padding: 12px 0;
   }
-
-  /* Remove any left/right spacing for mobile */
+  /* Force remove left and right spacing on small devices */
   .main-container,
   .wrapper,
   .container,
