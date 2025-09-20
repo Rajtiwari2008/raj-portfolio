@@ -134,13 +134,13 @@ nav {
     height: calc(100vh - 56px);
     width: 75vw;
     max-width: 320px;
-    background-color: var(--color-dark);
+    background-color: var(--color-dark, #222);
     flex-direction: column;
     padding: 2rem 1.5rem;
     gap: 1.5rem;
     box-shadow: -2px 0 12px rgba(79, 70, 229, 0.3);
     transform: translateX(100%);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s;
     pointer-events: none;
     opacity: 0;
     z-index: 1500;
@@ -168,6 +168,22 @@ nav {
     margin: 0 !important;
   }
 }
+
+/* Optional overlay shown only when nav open */
+.nav-menu-overlay {
+  display: none;
+}
+.nav-menu.active ~ .nav-menu-overlay {
+  display: block;
+  position: fixed;
+  top: 56px;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 56px);
+  background: rgba(0,0,0,0.5);
+  z-index: 1400;
+}
+
 /* Very small phones */
 @media (max-width: 400px) {
   h1 {
