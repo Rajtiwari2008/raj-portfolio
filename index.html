@@ -33,7 +33,21 @@
             <span class="block w-7 h-1 bg-white rounded transition-all duration-300"></span>
         </button>
         <ul id="nav-menu"
-            class="transition-transform origin-top absolute top-16 left-0 w-full bg-black md:static md:bg-transparent md:flex md:space-x-6 md:w-auto md:opacity-100 md:shadow-none shadow-xl opacity-0 pointer-events-none md:pointer-events-auto">
+            style="
+              transform: translateY(-100%);
+              transition: transform 0.3s ease;
+              opacity: 1 !important;
+              pointer-events: none;
+              background-color: #000;
+              position: absolute;
+              top: 4rem;
+              left: 0;
+              width: 100%;
+              z-index: 50;
+              box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+            "
+            class="transition-transform origin-top md:static md:bg-transparent md:flex md:space-x-6 md:w-auto md:opacity-100 md:pointer-events-auto md:shadow-none"
+        >
             <li><a class="block py-4 px-6 md:py-0 md:px-0 hover:text-red-400 transition" href="#home">Home</a></li>
             <li><a class="block py-4 px-6 md:py-0 md:px-0 hover:text-red-400 transition" href="#work">Work</a></li>
             <li><a class="block py-4 px-6 md:py-0 md:px-0 hover:text-red-400 transition" href="#skills">Skills</a></li>
@@ -45,7 +59,6 @@
         </ul>
     </div>
 </nav>
-
 <!-- Hero Section -->
 <section id="home" class="min-h-screen flex items-center pt-24 bg-gradient-to-r from-black via-blue-900 to-gray-900 px-4 sm:px-6 lg:px-8 max-w-full mx-auto">
     <div class="max-w-7xl w-full mx-auto py-20">
@@ -78,7 +91,6 @@
         </div>
     </div>
 </section>
-
 <!-- Work Section -->
 <section id="work" class="py-20 bg-gradient-to-br from-blue-900 to-black px-4 sm:px-6 lg:px-8 max-w-full mx-auto">
     <div class="max-w-7xl mx-auto">
@@ -143,7 +155,6 @@
         </div>
     </div>
 </section>
-
 <!-- Skills Section -->
 <section id="skills" class="py-20 bg-gradient-to-r from-black via-blue-900 to-black px-4 sm:px-6 lg:px-8 max-w-full mx-auto">
     <div class="max-w-7xl mx-auto">
@@ -252,7 +263,6 @@
         </div>
     </div>
 </section>
-
 <!-- About Section -->
 <section id="about" class="py-20 bg-gradient-to-r from-black via-blue-900 to-black text-gray-200 px-4 sm:px-6 lg:px-8 max-w-full mx-auto">
     <div class="max-w-7xl mx-auto flex flex-wrap gap-12 items-center">
@@ -275,7 +285,6 @@
         </div>
     </div>
 </section>
-
 <!-- Contact Section -->
 <section id="contact" class="py-20 bg-gradient-to-br from-blue-900 to-black px-4 sm:px-6 lg:px-8 max-w-full mx-auto">
     <div class="max-w-4xl mx-auto">
@@ -351,7 +360,6 @@
         </div>
     </div>
 </section>
-
 <!-- Footer -->
 <footer class="py-12 bg-black text-white px-4 sm:px-6 lg:px-8 max-w-full mx-auto">
     <div class="max-w-7xl mx-auto">
@@ -399,6 +407,19 @@
         </div>
     </div>
 </footer>
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const navMenu = document.getElementById('nav-menu');
 
+  menuBtn.addEventListener('click', () => {
+    if (navMenu.style.transform === 'translateY(0px)' || navMenu.style.transform === 'translateY(0)') {
+      navMenu.style.transform = 'translateY(-100%)';
+      navMenu.style.pointerEvents = 'none';
+    } else {
+      navMenu.style.transform = 'translateY(0)';
+      navMenu.style.pointerEvents = 'auto';
+    }
+  });
+</script>
 </body>
 </html>
