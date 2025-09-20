@@ -9,25 +9,23 @@ body {
   box-sizing: border-box;
 }
 body {
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
   background: var(--color-bg, #fff); /* set your default background */
 }
-
 /* ===================== Main Container ===================== */
 .main-container,
 .wrapper,
 .container,
 main,
 footer {
-  width: 100vw;
-  max-width: 100vw;
+  width: 100%;
+  max-width: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 /* ===================== Responsive Typography ===================== */
 h1 {
   font-size: clamp(1.8rem, 4vw, 3rem);
@@ -42,7 +40,6 @@ p, li, span, a {
   font-size: clamp(0.9rem, 1.5vw, 1.1rem);
   line-height: 1.5;
 }
-
 /* ===================== Responsive Images ===================== */
 img {
   max-width: 100%;
@@ -57,11 +54,10 @@ img {
   object-fit: cover;
   border-radius: var(--border-radius);
 }
-
 /* ===================== Responsive Navigation Improvements ===================== */
 nav {
-  width: 100vw;
-  max-width: 100vw;
+  width: 100%;
+  max-width: 100%;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -71,8 +67,8 @@ nav {
   padding: 0;
 }
 .nav-inner {
-  width: 100vw;
-  max-width: 100vw;
+  width: 100%;
+  max-width: 100%;
   margin: 0;
   padding: 0 1rem;
   display: flex;
@@ -125,7 +121,6 @@ nav {
 .nav-link:focus::after {
   width: 100%;
 }
-
 /* ===================== Responsive Breakpoints ===================== */
 /* Small devices (phones) */
 @media (max-width: 768px) {
@@ -173,6 +168,26 @@ nav {
     margin: 0 !important;
   }
 }
+/* Very small phones */
+@media (max-width: 400px) {
+  h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+  }
+  nav {
+    height: 50px;
+  }
+  .nav-inner {
+    height: 50px;
+    padding: 0 0.75rem;
+  }
+  .nav-toggle {
+    font-size: 1.6rem;
+  }
+  .nav-menu {
+    width: 85vw;
+    max-width: 280px;
+  }
+}
 /* Medium devices (tablets) */
 @media (min-width: 769px) and (max-width: 1200px) {
   .nav-menu {
@@ -186,5 +201,17 @@ nav {
   h3 { font-size: 2rem; }
   .nav-link {
     font-size: 1.1rem;
+  }
+}
+/* Ultra-wide large screens */
+@media (min-width: 1800px) {
+  h1 {
+    font-size: 4rem;
+  }
+  nav {
+    padding: 0 4rem;
+  }
+  .nav-menu {
+    gap: 3rem;
   }
 }
